@@ -14,18 +14,18 @@ import com.hit.management.repository.PlanManagementRepository;
 @Service
 public class PlanManagementService {
 
-	Map<String, PlanManagement> planManagementCache = new ConcurrentHashMap<>();
+	//Map<String, PlanManagement> planManagementCache = new ConcurrentHashMap<>();
 
 	@Autowired
 	private PlanManagementRepository planManagementRepository;
 
 	public PlanManagement findPlanByPlanId(String planId) {
 
-		if (planManagementCache.containsKey(planId)) {
+	/*	if (planManagementCache.containsKey(planId)) {
 			return planManagementCache.get(planId);
-		}
+		}*/
 
-		PlanManagement planManagement = planManagementRepository.findByPlanId(planId);
+		PlanManagement planManagement = planManagementRepository.findByPlanid(planId);
 		if (planManagement == null) {
 			throw new RuntimeException("No Plan found for given plan Id");
 		}
@@ -33,17 +33,18 @@ public class PlanManagementService {
 	}
 
 	public PlanManagement addPlan(PlanManagement planManagement) {
-		if (findPlanByPlanId(planManagement.getPlanid()) != null) {
+		if (planManagementRepository.findByPlanid(planManagement.getPlanid()) != null) {
 			throw new RuntimeException("Plan Exists");
 		}
-		planManagementRepository.save(planManagement);
-		planManagementCache.put(planManagement.getPlanid(), planManagement);
+		return planManagementRepository.save(planManagement);
+		//planManagementCache.put(planManagement.getPlanid(), planManagement);
 
-		return planManagement;
+		//return planManagement;
 	}
 
 	public List<PlanManagement> findAllPlans() {
-		return planManagementCache.values().stream().collect(Collectors.toList());
+		//return planManagementCache.values().stream().collect(Collectors.toList());
+		return (List<PlanManagement>) planManagementRepository.findAll();
 	}
 
 	public PlanManagement updatePLan(PlanManagement planManagement) {
@@ -53,7 +54,7 @@ public class PlanManagementService {
 		tempPlanManagement.setPlanname(planManagement.getPlanname());
 		tempPlanManagement.setTotalhits(planManagement.getTotalhits());
 
-		planManagementCache.put(planManagement.getPlanid(), tempPlanManagement);
+	//	planManagementCache.put(planManagement.getPlanid(), tempPlanManagement);
 		return planManagementRepository.save(tempPlanManagement);
 	}
 
@@ -62,7 +63,7 @@ public class PlanManagementService {
 		if (planManagement == null) {
 			throw new RuntimeException("No Plan found for given plan Id");
 		}
-		planManagementCache.remove(planId);
+	//	planManagementCache.remove(planId);
 		planManagementRepository.delete(planManagement);
 		return planManagement;
 

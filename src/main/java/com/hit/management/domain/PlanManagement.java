@@ -1,13 +1,18 @@
 package com.hit.management.domain;
 
-import org.springframework.data.cassandra.mapping.PrimaryKey;
-import org.springframework.data.cassandra.mapping.Table;
+import org.springframework.data.annotation.Id;
+/*import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;*/
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Table("planmanagement")
+//@Table("planmanagement")
+@Document(collection = "planmanagement")
 public class PlanManagement {
 
+	@Id
+	private String id;
 	
-	@PrimaryKey
+	//@PrimaryKey
 	private String planid ;
 	
 	private String planname;
@@ -24,6 +29,14 @@ public class PlanManagement {
 
 	public String getPlanname() {
 		return planname;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setPlanname(String planname) {

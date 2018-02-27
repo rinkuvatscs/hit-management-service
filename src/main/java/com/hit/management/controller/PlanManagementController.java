@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class PlanManagementController {
 	}
 
 	@RequestMapping(value = "/plan", method = RequestMethod.POST)
-	public PlanManagement addPlan(PlanManagement planManagement) {
+	public PlanManagement addPlan(@RequestBody PlanManagement planManagement) {
 		return planManagementService.addPlan(planManagement);
 	}
 

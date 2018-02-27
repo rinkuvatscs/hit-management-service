@@ -6,5 +6,5 @@ import com.hit.management.domain.PlanManagement;
 
 public interface PlanManagementRepository  extends CrudRepository<PlanManagement,String>{
 
-	PlanManagement findByPlanId(String planId) ;
+	PlanManagement findByPlanid(String plainId);
 }
