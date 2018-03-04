@@ -1,5 +1,7 @@
 package com.hit.management.service;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class HitManagementService {
 		if (planManagement == null) {
 			throw new RuntimeException("Please set Plan First");
 		}
-		if (planManagement.getTotalhits() >= hitManagement.getCurrentCount() + 1) {
+		if (planManagement.getTotalHits() >= hitManagement.getCurrentCount() + 1) {
 			hitManagement.setCurrentCount(hitManagement.getCurrentCount() + 1);
 			updateHitManagementCounter(hitManagement);
 			return true;
@@ -41,9 +43,20 @@ public class HitManagementService {
 
 	public HitManagement addHitManagement(HitManagement hitManagement) {
 		if (findHitManagmentByClientId(hitManagement.getClientId()) != null) {
-			throw new RuntimeException("No Client Id exists");
+			throw new RuntimeException("Client Already Exists");
 		}
+		hitManagement.setCreateDate(Calendar.getInstance().getTime());
 		return updateHitManagementCounter(hitManagement);
 	}
 
+	public HitManagement updateHitManagement(HitManagement hitManagement) {
+		HitManagement tempHitManagement = findHitManagmentByClientId(hitManagement.getClientId());
+		if (tempHitManagement == null) {
+			throw new RuntimeException("No Client Id exists");
+		}
+		tempHitManagement.setCurrentCount(hitManagement.getCurrentCount());
+		tempHitManagement.setPlanId(hitManagement.getPlanId());
+		tempHitManagement.setUpdatedDate(Calendar.getInstance().getTime());
+		return updateHitManagementCounter(tempHitManagement);
+	}
 }

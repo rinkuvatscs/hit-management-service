@@ -29,7 +29,7 @@ public class PlanManagementController {
 	}
 
 	@RequestMapping(value = "/plan", method = RequestMethod.PUT)
-	public PlanManagement updatePlan(PlanManagement planManagement) {
+	public PlanManagement updatePlan(@RequestBody PlanManagement planManagement) {
 		return planManagementService.updatePLan(planManagement);
 	}
 

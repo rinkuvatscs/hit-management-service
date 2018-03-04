@@ -24,4 +24,12 @@ public class HitManagementController {
 	public HitManagement addHitManagement(@RequestBody HitManagement hitManagement) {
 		return hitManagementService.addHitManagement(hitManagement);
 	}
+
+	
+	@RequestMapping(value = "/hit", method = RequestMethod.PUT)
+	public HitManagement updateHitManagement(@RequestBody HitManagement hitManagement) {
+		return hitManagementService.updateHitManagement(hitManagement);
+	}
+	
 }
+
