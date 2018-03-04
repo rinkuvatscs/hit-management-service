@@ -1,57 +1,64 @@
 package com.hit.management.domain;
 
-import org.springframework.data.annotation.Id;
-/*import org.springframework.data.cassandra.mapping.PrimaryKey;
-import org.springframework.data.cassandra.mapping.Table;*/
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
 
-//@Table("planmanagement")
-@Document(collection = "planmanagement")
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
+
+@Table("planManagement")
 public class PlanManagement {
 
-	@Id
-	private String id;
+	@PrimaryKey
+	private String planId ;
 	
-	//@PrimaryKey
-	private String planid ;
+	private String planName;
 	
-	private String planname;
+	private Integer totalHits ;
 	
-	private Integer totalhits ;
+	private Date createDate ;
 
-	public String getPlanid() {
-		return planid;
+	private Date updatedDate ;
+	
+
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
 
-	public void setPlanid(String planid) {
-		this.planid = planid;
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+	
+	public String getPlanId() {
+		return planId;
 	}
 
-	public String getPlanname() {
-		return planname;
+	public void setPlanId(String planId) {
+		this.planId = planId;
 	}
 
-	public String getId() {
-		return id;
+	public String getPlanName() {
+		return planName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPlanName(String planName) {
+		this.planName = planName;
 	}
 
-	public void setPlanname(String planname) {
-		this.planname = planname;
+	public Integer getTotalHits() {
+		return totalHits;
 	}
 
-	public Integer getTotalhits() {
-		return totalhits;
+	public void setTotalHits(Integer totalHits) {
+		this.totalHits = totalHits;
 	}
 
-	public void setTotalhits(Integer totalhits) {
-		this.totalhits = totalhits;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 	
 	
 }
