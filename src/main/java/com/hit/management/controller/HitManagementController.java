@@ -31,5 +31,14 @@ public class HitManagementController {
 		return hitManagementService.updateHitManagement(hitManagement);
 	}
 	
+	@RequestMapping(value = "/hit", method = RequestMethod.GET)
+	public HitManagement getHitManagement(String clientId) {
+		HitManagement hitManagement =  hitManagementService.findHitManagmentByClientId(clientId);
+		if(hitManagement != null) {
+			return hitManagement ;
+		}
+		throw new RuntimeException("Invaild client Id");
+	}
+	
 }
 
