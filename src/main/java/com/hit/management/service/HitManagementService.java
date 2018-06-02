@@ -30,8 +30,8 @@ public class HitManagementService {
 			throw new RuntimeException("Please set Plan First");
 		}
 		if (planManagement.getTotalHits() >= hitManagement.getCurrentCount() + 1) {
-			hitManagement.setCurrentCount(hitManagement.getCurrentCount() + 1);
-			updateHitManagementCounter(hitManagement);
+			// hitManagement.setCurrentCount(hitManagement.getCurrentCount() + 1);
+			// updateHitManagementCounter(hitManagement);
 			return true;
 		}
 		return false;
@@ -58,5 +58,13 @@ public class HitManagementService {
 		tempHitManagement.setPlanId(hitManagement.getPlanId());
 		tempHitManagement.setUpdatedDate(Calendar.getInstance().getTime());
 		return updateHitManagementCounter(tempHitManagement);
+	}
+
+	public Boolean updateCounter(String clientId) {
+
+		hitManagementRepository.updateCounter(clientId);
+
+		return true;
+
 	}
 }

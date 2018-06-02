@@ -6,9 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class PocHitCountApplication {
+public class HitManagementServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PocHitCountApplication.class, args);
+		SpringApplication.run(HitManagementServiceApplication.class, args);
 	}
 }
