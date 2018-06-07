@@ -17,8 +17,8 @@ public class HitManagementController {
 	@Autowired
 	private HitManagementService hitManagementService;
 
-	@RequestMapping(value = "/checkhits")
-	public boolean checkHits(String clientId) {
+	@RequestMapping(value = "/checkhits", method = RequestMethod.GET)
+	public boolean checkHits(@RequestParam String clientId) {
 		return hitManagementService.hasLimit(clientId);
 	}
 
@@ -43,9 +43,9 @@ public class HitManagementController {
 
 	@RequestMapping(value = "/counter", method = RequestMethod.GET)
 	public Boolean updateCounter(@RequestParam String clientId) {
-		HitManagement hitManagement = hitManagementService.findHitManagmentByClientId(clientId);
-		if (hitManagement != null) {
-			return true;
+		Boolean isTrue = hitManagementService.updateCounter(clientId);
+		if (isTrue) {
+			return isTrue;
 		}
 		throw new RuntimeException("Invaild client Id");
 	}

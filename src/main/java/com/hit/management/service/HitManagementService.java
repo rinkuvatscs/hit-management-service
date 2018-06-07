@@ -62,7 +62,11 @@ public class HitManagementService {
 
 	public Boolean updateCounter(String clientId) {
 
-		hitManagementRepository.updateCounter(clientId);
+		// hitManagementRepository.updateCounter(clientId);
+
+		HitManagement hitManagement = findHitManagmentByClientId(clientId);
+		hitManagement.setCurrentCount(hitManagement.getCurrentCount() + 1);
+		updateHitManagementCounter(hitManagement);
 
 		return true;
 
